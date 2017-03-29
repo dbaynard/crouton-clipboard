@@ -35,4 +35,13 @@ Note: This is automatically done by `install.sh`
 
 Then, to copy and paste from the "system" clipboard in vim, just type `"*y` and `"*p`.
 
+If you aren’t running an X server you won’t have access to the \* register, so add the following commands to import and export the clipboard.
+
+```vim
+" Crouton"{{{
+noremap <silent> <leader>z[ :let @" = join(readfile($HOME . "/.crouton-clipboard/data.txt"), "\n")<CR>
+noremap <silent> <leader>z] :call writefile(split(@", "\n", 1), $HOME . "/.crouton-clipboard/data.txt")<CR>
+"}}}
+```
+
 For more info on Chrome development, please see my [video on my Chrome OS DX](https://www.youtube.com/watch?v=O_fWX_vEUGA).
